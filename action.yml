@@ -1,0 +1,38 @@
+name: 'Update Docker dependencies'
+description: 'Action for automatic updating Dockerfile and docker-compose.yml dependencies.'
+
+inputs:
+  skip-update:
+    description: 'A comma separated list of images that should not be checked for newer version.'
+    required: false
+    default: ''
+
+  semantically-versioned-repos:
+    description: 'A comma separated list of images that are semantically versioned. You can also override/disable this by adding `:false`.'
+    required: false
+    default: ''
+
+  update-dockerfile:
+    description: 'Whether check for Dockerfile updates or not.'
+    required: true
+    default: 'true'
+
+  update-docker-compose:
+    description: 'Whether check for docker-composer.yml updates or not.'
+    required: true
+    default: 'true'
+
+outputs:
+  updates-count:
+    description: 'The number of newer versions detected.'
+
+  message:
+    description: 'Example commit message that includes updated dependencies.'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+branding:
+  icon: arrow-up-circle
+  color: blue
